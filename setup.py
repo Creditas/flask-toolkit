@@ -18,4 +18,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ),
+    install_requires=[
+        'marshmallow==2.15.0',
+    ],
 )
