@@ -1,5 +1,5 @@
 import pytest
-from flask_toolkit import Entity
+from flask_toolkit.shared import Entity
 
 
 def test_setter_attributes():

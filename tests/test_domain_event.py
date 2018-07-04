@@ -1,5 +1,5 @@
 import pytest
-from flask_toolkit import DomainEvent
+from flask_toolkit.shared import DomainEvent
 
 
 def test_raise_when_event_name_is_not_implemented():

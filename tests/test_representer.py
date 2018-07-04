@@ -1,5 +1,5 @@
 import pytest
-from flask_toolkit import Representer
+from flask_toolkit.shared import Representer
 
 
 class CustomRepresenter(Representer):

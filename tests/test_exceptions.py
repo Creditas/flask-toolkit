@@ -1,4 +1,4 @@
-from flask_toolkit.exceptions import (
+from flask_toolkit.shared.exceptions import (
     ObjectDoesNotExistException, ForbiddenException, BadRequestException
 )
 
