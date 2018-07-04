@@ -1,1 +1,4 @@
-env
+env/
+dist/
+build/
+flask_toolkit.egg-info
