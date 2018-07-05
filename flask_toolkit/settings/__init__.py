@@ -1,0 +1,4 @@
+import os
+
+
+CRYPTOR_PASSWORD_SECRET_KEY = os.environ.get('CRYPTOR_PASSWORD_SECRET_KEY', None)
