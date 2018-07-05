@@ -7,3 +7,4 @@ from .representer import Representer
 from .singleton import Singleton
 from .strong_parameters import strong_parameters
 from .use_case import UseCase
+from .repository import Repository

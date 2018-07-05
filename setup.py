@@ -20,5 +20,13 @@ setuptools.setup(
     ),
     install_requires=[
         'marshmallow==2.15.0',
+        'Flask-Log-Request-ID==0.10.0',
+        'Logentries==0.17',
+        'Flask-Migrate==2.1.1',
+        'Flask-Cors==3.0.3',
+        'Flask==0.12.2',
+        'blinker==1.4',
+        'event-bus==1.0.2',
+        'aead==0.2'
     ],
 )
