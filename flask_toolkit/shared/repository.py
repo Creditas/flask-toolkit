@@ -12,7 +12,7 @@ class Repository(object):
         try:
             self.session = Storage().session
         except Exception as e:
-            raise Exception('You need setup instance for your storage')
+            print('You need setup instance for your storage')
 
     def create(self, entity):
         return self.save(entity)
