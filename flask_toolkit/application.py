@@ -5,11 +5,12 @@ from flask_log_request_id import RequestID, current_request_id
 from .shared.exceptions import (
     ObjectDoesNotExistException, ForbiddenException, BadRequestException
 )
+from flask_toolkit.shared.storage import Storage
 from .infra.logging import setup_web_logging
 
 
-def create_application(config=dict(), db=None):
-    app = Flask('template-app-python')
+def create_application(config=dict(), db=None, name='app-python'):
+    app = Flask(name)
 
     app.config.update(config)
 
@@ -64,5 +65,6 @@ def create_application(config=dict(), db=None):
     if db:
         Migrate(app, db)
         db.init_app(app)
+        Storage().setup_instance(db)
 
     return app
