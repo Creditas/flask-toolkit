@@ -9,7 +9,7 @@ from flask_toolkit.shared.storage import Storage
 from .infra.logging import setup_web_logging
 
 
-def create_application(config=dict(), db=None, name='app-python'):
+def create_application(config=dict(), db=None, name='app-python', setup_logger=True):
     app = Flask(name)
 
     app.config.update(config)
@@ -60,7 +60,8 @@ def create_application(config=dict(), db=None, name='app-python'):
 
     CORS(app)
     RequestID(app)
-    setup_web_logging(app)
+    if setup_logger:
+        setup_web_logging(app)
 
     if db:
         Migrate(app, db)

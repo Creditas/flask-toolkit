@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="flask_toolkit",
-    version="0.0.9",
+    version="0.0.10",
     author="Aurelio Saraiva",
     author_email="aurelio.saraiva@creditas.com.br",
     description="Flask toolkit for Domain Driven Design (DDD)",
@@ -27,13 +27,15 @@ setuptools.setup(
         'Flask==0.12.2',
         'blinker==1.4',
         'event-bus==1.0.2',
-        'aead==0.2'
+        'aead==0.2',
+        'flask_classful==0.14.1',
     ],
     extras_require={
         'dev':  [
             'ipdb',
             'flask-shell-ipython',
             'Flask-Script',
+            'urllib3==1.22'
         ],
     }
 )
