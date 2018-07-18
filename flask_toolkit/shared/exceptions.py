@@ -8,3 +8,7 @@ class ForbiddenException(Exception):
 
 class BadRequestException(Exception):
     pass
+
+
+class InvalidDomainConditions(Exception):
+    pass

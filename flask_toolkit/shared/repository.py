@@ -28,6 +28,15 @@ class Repository(object):
 
         return entity
 
+    def all(self):
+        return self.query().all()
+
+    def first(self):
+        return self.query().first()
+
+    def last(self):
+        return self.query().last()
+
     def fetch(self, id, raise_exception=False):
         try:
             return self.query().get(id)
