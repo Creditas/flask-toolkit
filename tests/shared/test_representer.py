@@ -21,10 +21,3 @@ def test_representer_render_with_render_wrapper():
     response = representer.render(data={}, wrapper='render_tests')
 
     assert response['render_tests'] == {}
-
-
-def test_representer_render_without_wrapper():
-    representer = Representer()
-
-    with pytest.raises(NotImplementedError):
-        representer.render(data={})
