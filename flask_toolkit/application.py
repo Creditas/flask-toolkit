@@ -20,7 +20,7 @@ def database_health_check(app, db):
         raise error
 
 
-def create_application(config=dict(), db=None, name='app-python', outside_handler=None):
+def create_application(name='app-python', config=dict(), db=None, config_logging=dict()):
     app = Flask(name)
 
     app.config.update(config)
@@ -84,8 +84,8 @@ def create_application(config=dict(), db=None, name='app-python', outside_handle
     CORS(app)
     RequestID(app)
 
-    if outside_handler:
-        setup_logging(app, outside_handler=outside_handler)
+    if config_logging:
+        setup_logging(app, config_logging)
 
     if db:
         Migrate(app, db)

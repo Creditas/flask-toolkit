@@ -46,20 +46,28 @@ def _setup_formatter(logger):
 
 
 def _setup_logger(logger, outside_handler=None):
-    logger.setLevel(logging.INFO)
-
     _remove_handler(logger)
     _stream_handler(logger)
     _setup_outside_handler(logger, outside_handler)
     _setup_formatter(logger)
 
 
-def setup_logging(app, outside_handler=None):
+def setup_logging(app, config_logging=dict()):
+    outside_handler = None
+    if 'outside_handler' in config_logging:
+        outside_handler = config_logging['outside_handler']
+
+    logger = logging.getLogger('werkzeug')
+    logger.setLevel(logging.ERROR)
+    _setup_logger(logger, outside_handler)
+
     logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
     _setup_logger(logger, outside_handler)
 
     logger = app.logger
-    _setup_logger(logger)
+    logger.setLevel(logging.INFO)
+    _setup_logger(logger, outside_handler)
 
 
 class RequestIdStore:

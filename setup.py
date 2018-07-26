@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="flask_toolkit",
-    version="0.0.13",
+    version="0.0.14",
     author="Aurelio Saraiva",
     author_email="aurelio.saraiva@creditas.com.br",
     description="Flask toolkit for Domain Driven Design (DDD)",
@@ -24,7 +24,7 @@ setuptools.setup(
         'Logentries==0.17',
         'Flask-Migrate==2.1.1',
         'Flask-Cors==3.0.3',
-        'Flask==0.12.2',
+        'Flask==1.0.2',
         'blinker==1.4',
         'event-bus==1.0.2',
         'aead==0.2',
