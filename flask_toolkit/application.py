@@ -7,7 +7,7 @@ from .shared.exceptions import (
     BadRequestException, InvalidDomainConditions
 )
 from flask_toolkit.shared.storage import Storage
-from .infra.logging import setup_web_logging
+from .infra.logging import setup_logging, telemetry
 
 
 def database_health_check(app, db):
@@ -20,7 +20,7 @@ def database_health_check(app, db):
         raise error
 
 
-def create_application(config=dict(), db=None, name='app-python', setup_logger=True):
+def create_application(config=dict(), db=None, name='app-python', outside_handler=None):
     app = Flask(name)
 
     app.config.update(config)
@@ -38,7 +38,14 @@ def create_application(config=dict(), db=None, name='app-python', setup_logger=T
         user_agent = request.headers.get('User-Agent', None)
         remote_addr = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
 
-        app.logger.info(f'status={response.status} ip={remote_addr} user_agent={user_agent} {data}')
+        telemetry(
+            method=request.method,
+            path=request.path,
+            status=response.status,
+            ip=remote_addr,
+            user_agent=user_agent,
+            payload=data
+        )
 
         return response
 
@@ -76,8 +83,9 @@ def create_application(config=dict(), db=None, name='app-python', setup_logger=T
 
     CORS(app)
     RequestID(app)
-    if setup_logger:
-        setup_web_logging(app)
+
+    if outside_handler:
+        setup_logging(app, outside_handler=outside_handler)
 
     if db:
         Migrate(app, db)
