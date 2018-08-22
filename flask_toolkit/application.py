@@ -78,7 +78,7 @@ def create_application(name='app-python', config=dict(), db=None, config_logging
 
     @app.errorhandler(Exception)
     def internal_server_error(error):
-        app.logger.error(error)
+        app.logger.exception(error)
         return 'Something bad happened', 500
 
     CORS(app)
