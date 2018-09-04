@@ -76,11 +76,6 @@ def create_application(name='app-python', config=dict(), db=None, config_logging
     def invalid_domain_conditions(error):
         return jsonify({'errors': [str(error)]}), 422
 
-    @app.errorhandler(Exception)
-    def internal_server_error(error):
-        app.logger.exception(error)
-        return 'Something bad happened', 500
-
     CORS(app)
     RequestID(app)
 
