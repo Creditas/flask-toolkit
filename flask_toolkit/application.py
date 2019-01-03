@@ -10,16 +10,6 @@ from flask_toolkit.shared.storage import Storage
 from .infra.logging import setup_logging, telemetry
 
 
-def database_health_check(app, db):
-    if not db:
-        return None
-    try:
-        db.session.execute('SELECT 1')
-    except Exception as error:
-        app.logger.error(error)
-        raise error
-
-
 def create_application(name='app-python', config=dict(), db=None, config_logging=dict()):
     app = Flask(name)
 
@@ -32,7 +22,7 @@ def create_application(name='app-python', config=dict(), db=None, config_logging
         data = request.get_data()
         try:
             data = data.decode('utf-8')
-        except:
+        except Exception as e:
             pass
 
         user_agent = request.headers.get('User-Agent', None)
@@ -48,11 +38,6 @@ def create_application(name='app-python', config=dict(), db=None, config_logging
         )
 
         return response
-
-    @app.route('/health-check')
-    def health_check():
-        database_health_check(app, db)
-        return 'Ok', 200
 
     @app.errorhandler(404)
     def default_page_not_found(error):
