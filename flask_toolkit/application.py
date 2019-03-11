@@ -31,6 +31,7 @@ def create_application(name='app-python', config=dict(), db=None, config_logging
         telemetry(
             method=request.method,
             path=request.path,
+            args=request.args.to_dict(),
             status=response.status,
             ip=remote_addr,
             user_agent=user_agent,
