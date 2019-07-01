@@ -7,7 +7,6 @@ class Entity:
                 setattr(self, key, kwargs[key])
 
     def add_domain_event(self, event):
-        import ipdb; ipdb.set_trace()
         self.domain_events.append(event)
 
     def remove_domain_event(self, event):
