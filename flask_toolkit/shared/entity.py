@@ -7,6 +7,7 @@ class Entity:
                 setattr(self, key, kwargs[key])
 
     def add_domain_event(self, event):
+        import ipdb; ipdb.set_trace()
         self.domain_events.append(event)
 
     def remove_domain_event(self, event):
@@ -23,3 +24,6 @@ class Entity:
         attributes = sorted(self.__dict__.items(), key=lambda tuple_: tuple_[0])
         attributes = [f'{key}={value!r}' for key, value in attributes if not key.startswith('_')]
         return f'<{self.__class__.__name__}({", ".join(attributes)})>'
+
+    def to_dict(self):
+        return self.__dict__
