@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_log_request_id import RequestID, current_request_id
+
+from flask_toolkit.shared.exceptions import ObjectAlreadyExistException
 from .shared.exceptions import (
     ObjectDoesNotExistException, ForbiddenException,
     BadRequestException, InvalidDomainConditions
@@ -47,6 +49,10 @@ def create_application(name='app-python', config=dict(), db=None, config_logging
     @app.errorhandler(ObjectDoesNotExistException)
     def page_not_found(error):
         return 'This page does not exist', 404
+
+    @app.errorhandler(ObjectAlreadyExistException)
+    def page_not_found(error):
+        return 'This object already exists', 409
 
     @app.errorhandler(ForbiddenException)
     def forbidden(error):
