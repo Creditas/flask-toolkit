@@ -12,3 +12,7 @@ class BadRequestException(Exception):
 
 class InvalidDomainConditions(Exception):
     pass
+
+
+class ObjectAlreadyExistException(Exception):
+    pass

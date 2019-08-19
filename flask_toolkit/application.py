@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_log_request_id import RequestID, current_request_id
 from .shared.exceptions import (
     ObjectDoesNotExistException, ForbiddenException,
-    BadRequestException, InvalidDomainConditions
+    BadRequestException, InvalidDomainConditions, ObjectAlreadyExistException
 )
 from flask_toolkit.shared.storage import Storage
 from .infra.logging import setup_logging, telemetry
@@ -47,6 +47,10 @@ def create_application(name='app-python', config=dict(), db=None, config_logging
     @app.errorhandler(ObjectDoesNotExistException)
     def page_not_found(error):
         return 'This page does not exist', 404
+
+    @app.errorhandler(ObjectAlreadyExistException)
+    def conflict(error):
+        return 'This object already exists', 409
 
     @app.errorhandler(ForbiddenException)
     def forbidden(error):

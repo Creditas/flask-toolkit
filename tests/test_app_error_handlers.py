@@ -1,5 +1,5 @@
 from flask_toolkit.shared.exceptions import (
-    ObjectDoesNotExistException, ForbiddenException, BadRequestException
+    ObjectDoesNotExistException, ForbiddenException, BadRequestException, ObjectAlreadyExistException
 )
 
 
@@ -41,3 +41,13 @@ def test_bad_request(client, app):
     response = client.get('/test-bad-request')
 
     assert response.status_code == 400
+
+
+def test_conflict(client, app):
+    @app.route('/test-conflict')
+    def bad_request():
+        raise ObjectAlreadyExistException()
+
+    response = client.get('/test-conflict')
+
+    assert response.status_code == 409
