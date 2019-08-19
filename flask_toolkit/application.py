@@ -51,7 +51,7 @@ def create_application(name='app-python', config=dict(), db=None, config_logging
         return 'This page does not exist', 404
 
     @app.errorhandler(ObjectAlreadyExistException)
-    def page_not_found(error):
+    def conflict(error):
         return 'This object already exists', 409
 
     @app.errorhandler(ForbiddenException)
