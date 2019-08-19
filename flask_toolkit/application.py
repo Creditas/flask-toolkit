@@ -2,11 +2,10 @@ from flask import Flask, request, jsonify
 from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_log_request_id import RequestID, current_request_id
-
-from flask_toolkit.shared.exceptions import ObjectAlreadyExistException
+from flask_toolkit.shared.exceptions import
 from .shared.exceptions import (
     ObjectDoesNotExistException, ForbiddenException,
-    BadRequestException, InvalidDomainConditions
+    BadRequestException, InvalidDomainConditions, ObjectAlreadyExistException
 )
 from flask_toolkit.shared.storage import Storage
 from .infra.logging import setup_logging, telemetry
