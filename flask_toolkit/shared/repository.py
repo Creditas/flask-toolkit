@@ -52,7 +52,9 @@ class Repository(object):
         return self.session.query(entity)
 
     def __dispatch_domain_events(self, entity):
-        for event in entity.domain_events:
+        events = entity.domain_events.copy()
+
+        for event in events:
             logging.info('sent event %s' % event.event_name)
             bus.emit(event.event_name, **event.to_dict())
             entity.remove_domain_event(event)
