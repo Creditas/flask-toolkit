@@ -19,7 +19,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ),
     install_requires=[
-        'marshmallow==2.15.0',
+        'marshmallow==2.15.1',
         'Flask-Log-Request-ID==0.10.0',
         'Logentries==0.17',
         'Flask-Migrate==2.1.1',
