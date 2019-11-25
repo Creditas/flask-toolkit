@@ -40,6 +40,9 @@ class Repository(object):
     def limit(self, limit):
         return self.query().limit(limit)
 
+    def offset(self, offset):
+        return self.query().offset(offset)
+
     def fetch(self, id, raise_exception=False):
         try:
             return self.query().get(id)
