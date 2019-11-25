@@ -37,6 +37,9 @@ class Repository(object):
     def last(self):
         return self.query().last()
 
+    def limit(self, limit):
+        return self.query().limit(limit)
+
     def fetch(self, id, raise_exception=False):
         try:
             return self.query().get(id)
