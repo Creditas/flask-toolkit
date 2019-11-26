@@ -51,7 +51,7 @@ class Repository(object):
 
         return self.session.query(entity)
 
-    def filter_with_pagination(self, limit, offset, filters={}):
+    def fetch_paginated(self, limit, offset, filters={}):
         return self.query().limit(limit).offset(offset).filter_by(filters).all()
 
     def __dispatch_domain_events(self, entity):
