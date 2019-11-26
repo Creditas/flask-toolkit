@@ -37,12 +37,6 @@ class Repository(object):
     def last(self):
         return self.query().last()
 
-    def limit(self, limit):
-        return self.query().limit(limit)
-
-    def offset(self, offset):
-        return self.query().offset(offset)
-
     def fetch(self, id, raise_exception=False):
         try:
             return self.query().get(id)
@@ -56,6 +50,9 @@ class Repository(object):
             entity = self._entity
 
         return self.session.query(entity)
+
+    def filter_paginated(self, limit, offset, filters={}):
+        return self.query().limit(limit).offset(offset).filter_by(filters)
 
     def __dispatch_domain_events(self, entity):
         events = entity.domain_events.copy()
