@@ -1,4 +1,3 @@
-import pytest
 from flask_toolkit.shared import Representer
 
 
