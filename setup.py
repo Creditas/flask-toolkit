@@ -24,7 +24,7 @@ setuptools.setup(
         'Logentries==0.17',
         'Flask-Migrate==2.1.1',
         'Flask-Cors==3.0.3',
-        'Flask==1.0.2',
+        'Flask==2.3.2',
         'blinker==1.4',
         'event-bus==1.0.2',
         'aead==0.2',
